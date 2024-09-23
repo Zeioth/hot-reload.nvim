@@ -52,7 +52,7 @@ All options described here are 100% optional and you don't need to define them t
 ## Example of a real config
 
 ```lua
--- hot-reload.nvim [distro update]
+-- hot-reload.nvim [config reload]
 -- https://github.com/Zeioth/hot-reload.nvim
 {
   "Zeioth/hot-reload.nvim",
