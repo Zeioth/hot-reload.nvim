@@ -47,7 +47,7 @@ All options described here are 100% optional and you don't need to define them t
 | **reload_callback**          | `function() end`          | Optional function where you can specify things to do after the files have hot-reloaded. See example below. |
 | **reload_all**     | `true`          | If true, all files in `reload_files` will hot-reload every time you write any of the files included in `reload_files`, in order. If false, only the file you write will be reloaded. |
 | **notify** | `true`| If true, a notification will be displayed when a file is hot-reloaded. |
-| **event** | `BufWritePost`| Event that trigger the hot-reload. Please don't change this unless you know what you are doing. |
+| **event** | `BufWritePost`| Event that trigger the hot-reload. Don't change this unless you know what you are doing. |
 
 ## Example of a real config
 
