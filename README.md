@@ -1,6 +1,3 @@
-> ![WARNING]
->  The plugin works fine but I'm still writing the readme and the docs, so please be patient for the next 48h.
-
 # hot-reload.nvim
 Reload your neovim config on the fly! It works with any lua file.
 
@@ -16,7 +13,6 @@ Reload your neovim config on the fly! It works with any lua file.
 
 - [Why](#why)
 - [How to install](#how-to-install)
-- [Available commands](#available-commands)
 - [Available options](#available-options)
 - [Example of a real config](#example-of-a-real-config)
 - [FAQ](#faq)
@@ -38,82 +34,42 @@ This plugin requires you to use lazy package manager
 
 ```lua
 {
-  "Zeioth/distroupgrade.nvim",
+  "Zeioth/hot-reload.nvim",
   dependencies = "nvim-lua/plenary.nvim",
-  event = "VeryLazy",
+  event = "BufEnter",
   opts = {}
 }
 ```
 
-## Available commands
-
-| Command                          | Description                                                                                             |
-|----------------------------------|---------------------------------------------------------------------------------------------------------|
-| **:DistroUpdate**                | If the value of the option `channel` is `stable`, it will update from the latest available released version of the `remote` of the git repository of your nvim config. If the value of `channel` is `nightly`, it will update from the latest changes in the branch `nightly` of the git repository of your nvim config. |
-| **:DistroUpdateRevert**          | Uses git to bring your config to the state it had before running `:DistroUpdate`.                        |
-| **:DistroFreezePluginVersions**  | Saves your current plugin versions into `lazy_versions.lua` in your config directory. You can import this file and pass it to your lazy config, so it respects your locked versions. [Check the option `spec` in lazy](https://github.com/folke/lazy.nvim). |
-| **:DistroReadVersion**           | Prints the commit number of the current distro version.                                                  |
-| **:DistroReadChangelog**         | Prints the changelog.                                                                                    |
-
 ## Available options
 All options described here are 100% optional and you don't need to define them to use this plugin.
 
-### Updater options
-Options to configure what version/commit will be downloaded.
-
 | Name                | Default value  | Description                                                                                                                                                          |
 |---------------------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **channel**         | `stable`       | Channel used by the command `:DistroUpdate`. `stable` will update the distro from the latest available released version of your git repository. `nightly` will update the distro from the nightly branch of your git repository. |
-| **commit**          | `nil`          | If this option is specified, it will prevail over `release_tag` and `channel`.                                                                                        |
-| **release_tag**     | `nil`          | If this option is specified, it will prevail over `channel`. The format must be semantic versioning, like: `"v1.0"`.                                                  |
-| **remote** | `origin`| If you have multiple remotes, you can specify the one to use with this option. |
-
-### Updater UX options
-Options to configure what happen during the update.
-
-| Name                          | Default value  | Description                                                                                                                          |
-|-------------------------------|----------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| **overwrite_uncommitted_local_changes** | `true`         | If true, uncommitted local changes will be lost. If false, the update will fail with an error.                                        |
-| **update_plugins**             | `true`         | If true, after `:DistroUpdate`, plugins will update automatically before closing Neovim. If false, you will have to update them manually using lazy. |
-| **on_update_show_changelog**   | `true`         | If true, after `:DistroUpdate`, the changes of the new version will be displayed.                                                     |
-| **on_update_auto_quit**        | `false`         | If true, after `:DistroUpdate`, Neovim will close automatically. If false, you will have to close it manually to ensure stability.     |
-| **auto_accept_prompts**        | `false`         | If true, all prompts in `:DistroUpdate` will be accepted automatically.                                                              |
-
-### Versioning options
-Options to configure where to store the plugins file and the rollback file.
-
-| Name              | Default value                                  | Description                                                                 |
-|-------------------|------------------------------------------------|-----------------------------------------------------------------------------|
-| **snapshot_file**  | `<nvim_config_dir>/lua/lazy_snapshot.lua`      | File used by the command `:DistroFreezePluginVersions` to write the plugins. |
-| **rollback_file**  | `<nvim_cache_dir>/rollback.lua`                | Rollback file automatically triggered by `:DistroUpdate`. This file will be used when you use `:DistroUpdateRevert`. |
-
-### Hot reload options
-Options to configure the extra feature `hot reload`.
-
-| Name                 | Default value              | Description                                                                                                                          |
-|----------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| **hot_reload_files**  | `{}`                       | The files included will be hot reloaded every time you write them. This way you can see the changes in your config reflected without having to restart nvim. For example: `{ my_nvim_opts_file, my_nvim_mappings_file}`. Be aware this feature is experimental, and might not work in all cases yet. |
-| **hot_reload_callback** | `function() end`         | (optional) Extra things to do after the files defined in the option `hot_reload_files` are reloaded. For example: This can be handy if you want to re-apply your theme. |
+| **reload_files**         | `string[]`       | Table of paths for the files you want to hot-reload.  |
+| **reload_callback**          | `function() end`          | (Optional) function with things to do after the files have hot reloaded. |
+| **reload_all**     | `true`          | If true, all files in `reload_files` will hot-reload every time you write any of te files defined in `reload_files`, by order. If false, only the file you write will be reloaded. |
+| **notify** | `true`| If true, a notification will be displayed when a file is hot-reloaded. |
+| **event** | `BufWritePost`| (Optional) Event that trigger the hot-reload. Please don't change this unless you know what you are doing. |
 
 ## Example of a real config
 
 ```lua
--- distroupdate.nvim [distro update]
--- https://github.com/Zeioth/distroupdate.nvim
+-- hot-reload.nvim [distro update]
+-- https://github.com/Zeioth/hot-reload.nvim
 {
-  "Zeioth/distroupdate.nvim",
+  "Zeioth/hot-reload.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
-  event = "VeryLazy",
+  event = "BufEnter",
   opts = function()
-    local config_dir = vim.fn.stdpath "config" .. "/lua/base/"
+    local config_dir = vim.fn.stdpath("config") .. "/lua/base/"
     return {
-      remote = "origin",
-      channel = "stable",                                             -- stable/nightly.
-      release_tag = nil,                                              -- in case you wanna freeze a specific distro version.
       hot_reload_files = {
+        -- Files to be hot-reloaded when modified.
         config_dir .. "1-options.lua",
         config_dir .. "4-mappings.lua"
       },
+      -- Things to do after hot-reload trigger.
       hot_reload_callback = function()
         vim.cmd ":silent! doautocmd ColorScheme"                     -- heirline colorscheme reload event.
         vim.cmd(":silent! colorscheme " .. base.default_colorscheme) -- nvim     colorscheme reload command.
@@ -123,18 +79,11 @@ Options to configure the extra feature `hot reload`.
 },
 ```
 
-## How to pass the plugins file to lazy
-If you've used `:DistroFreezePluginVersions` you have to pass the generated file to lazy, so it can use it. For that use the `spec` option. You can find an example [here](https://github.com/NormalNvim/NormalNvim/blob/main/lua/base/2-lazy.lua).
-
 ## Credits
-The GPL3 lua libraries this plugin use come from NormalNvim (Full rewrite) and AstroNvim (Foundation and git wrapper).
-So please support both projects if you enjoy this plugin.
+This GPL3 Neovim plugin has been developed for NormalNvim. It's based on the GPL3 hot reload snippet from AstroNvim v3. So please support both projects if you enjoy this plugin.
 
 ## FAQ
-* **Is this plugin automatic?** NO. This plugin will do nothing unless you run one of its commands.
-* **Where do the updates come from?** From your own git repo. You are the only one in control.
-* **Why not just using lazy alone?** If lazy covers your case of use, that's totally fine. But there will be scenarios where you are gonna need distroupdate.
-
+* **Is this plugin automatic?** Wip.
+ 
 ## Roadmap
-* It would be ideal to write unit tests to ensure we don't introduce regressions or breaking changes in future versions.
-* It would be cleaner to move `hot_reload` to a new plugin whith that sole responsability.
+* It would be a cool idea to allow specifying a callback per file to hot-reload. But it's unclear how many people would actually use this.
