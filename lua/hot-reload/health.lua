@@ -1,13 +1,11 @@
 -- On neovim you can run
--- :chechealth distroupdate
--- To know possible causes in case distroupdate.nvim is not working correctly.
-
--- TODO: This plugin doesn't require dependencies, so just print everything is ok.
+-- :chechealth hot-reload
+-- To know possible causes in case hot-reload.nvim is not working correctly.
 
 local M = {}
 
 function M.check()
-  vim.health.start("distroupdate.nvim")
+  vim.health.start("hot-reload.nvim")
 
   vim.health.info(
     "Neovim Version: v"
@@ -22,14 +20,16 @@ function M.check()
     vim.health.error "Neovim >= 0.10.0 is required"
   end
 
+  -- NOTE: No OS dependencies are required, currently.
   local programs = {
-    {
-      cmd = "git",
-      type = "error",
-      msg = "Having git installed is a hard requirement.",
-    }
+    -- {
+    --   cmd = "git",
+    --   type = "error",
+    --   msg = "Having git installed is a hard requirement.",
+    -- }
   }
 
+  -- check dependencies
   for _, program in ipairs(programs) do
     if type(program.cmd) == "string" then program.cmd = { program.cmd } end
     local name = table.concat(program.cmd, "/")
