@@ -95,3 +95,4 @@ This GPL3 Neovim plugin has been developed for NormalNvim. It's based on the GPL
  
 ## Roadmap
 * It would be a cool idea to allow specifying a callback per file to hot-reload. But it's unclear how many people would actually use this.
+* It would be cool (but not necessary) to have an option `reload_directories`.
