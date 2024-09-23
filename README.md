@@ -61,8 +61,8 @@ All options described here are 100% optional and you don't need to define them t
   opts = function()
     local config_dir = vim.fn.stdpath("config") .. "/lua/base/"
     return {
+      -- Files to be hot-reloaded when modified.
       hot_reload_files = {
-        -- Files to be hot-reloaded when modified.
         config_dir .. "1-options.lua",
         config_dir .. "4-mappings.lua"
       },
