@@ -62,12 +62,12 @@ All options described here are 100% optional and you don't need to define them t
     local config_dir = vim.fn.stdpath("config") .. "/lua/base/"
     return {
       -- Files to be hot-reloaded when modified.
-      hot_reload_files = {
+      reload_files = {
         config_dir .. "1-options.lua",
         config_dir .. "4-mappings.lua"
       },
       -- Things to do after hot-reload trigger.
-      hot_reload_callback = function()
+      reload_callback = function()
         vim.cmd ":silent! doautocmd ColorScheme"                      -- heirline colorscheme reload event.
         vim.cmd(":silent! colorscheme " .. vim.g.default_colorscheme) -- nvim     colorscheme reload command.
       end
