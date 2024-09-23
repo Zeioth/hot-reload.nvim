@@ -18,7 +18,7 @@ Reload your neovim config on the fly! It works with any lua file.
 - [FAQ](#faq)
 
 ## Why
-* The main case of use, is to re-apply your Neovim config without having to close and re-open Neovim.
+* The main case of use is to re-apply your Neovim config without having to close and re-open Neovim.
 * But you can use it to load any lua file.
 
 ### Warning
