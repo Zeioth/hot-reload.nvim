@@ -76,6 +76,16 @@ All options described here are 100% optional and you don't need to define them t
 },
 ```
 
+## 🌟 Get involved
+One of the biggest challenges NormalNvim face is marketing. So share the project and tell your friends!
+[![Stargazers over time](https://starchart.cc/Zeioth/hot-reload.svg)](https://starchart.cc/Zeioth/hot-reload.nvim)
+
+## Fix a bug and send a PR to appear as contributor
+
+<a href="https://github.com/NormalNvim/NormalNvim/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NormalNvim/NormalNvim" />
+</a>
+
 ## Credits
 This GPL3 Neovim plugin has been developed for NormalNvim. It's based on the GPL3 hot reload snippet from AstroNvim v3. So please support both projects if you enjoy this plugin.
  
