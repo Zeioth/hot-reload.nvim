@@ -78,7 +78,7 @@ All options described here are 100% optional and you don't need to define them t
 
 ## 🌟 Get involved
 One of the biggest challenges NormalNvim face is marketing. So share the project and tell your friends!
-[![Stargazers over time](https://starchart.cc/Zeioth/hot-reload.svg)](https://starchart.cc/Zeioth/hot-reload.nvim)
+[![Stargazers over time](https://starchart.cc/Zeioth/hot-reload.nvim.svg?variant=adaptive)](https://starchart.cc/Zeioth/hot-reload.nvim)
 
 ## Fix a bug and send a PR to appear as contributor
 
