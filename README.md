@@ -91,6 +91,7 @@ This GPL3 Neovim plugin has been developed for NormalNvim. It's based on the GPL
 
 ## FAQ
 * **Can I use this on any Neovim distro?** Yes. It is distro agnostic, as all the plugins released by [NormalNvim](https://normalnvim.github.io/).
+* **Can I use this plugin to reload my plugins too?** Lazy reload the plugins automatically when you modify their config. But if you are using any other plugin manager, you might want to.
  
 ## Roadmap
 * It would be a cool idea to allow specifying a callback per file to hot-reload. But it's unclear how many people would actually use this.
