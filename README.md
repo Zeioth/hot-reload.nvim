@@ -45,7 +45,7 @@ All options described here are 100% optional and you don't need to define them t
 |---------------------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **reload_files**         | `string[]`       | Table of paths for the files you want to hot-reload.  |
 | **reload_callback**          | `function() end`          | (Optional) function with things to do after the files have hot reloaded. |
-| **reload_all**     | `true`          | If true, all files in `reload_files` will hot-reload every time you write any of te files defined in `reload_files`, by order. If false, only the file you write will be reloaded. |
+| **reload_all**     | `true`          | If true, all files in `reload_files` will hot-reload every time you write any of the files defined in `reload_files`, in order. If false, only the file you write will be reloaded. |
 | **notify** | `true`| If true, a notification will be displayed when a file is hot-reloaded. |
 | **event** | `BufWritePost`| (Optional) Event that trigger the hot-reload. Please don't change this unless you know what you are doing. |
 
