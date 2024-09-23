@@ -1,7 +1,7 @@
 # hot-reload.nvim
 Reload your neovim config on the fly! It works with any lua file.
 
-![screenshot_2024-03-10_23-20-38_444541684](https://github.com/Zeioth/distroupdate.nvim/assets/3357792/c86e1978-9095-4c50-9365-e130ff69a7d2)
+![screenshot_2024-09-23_20-45-38_129993510](https://github.com/user-attachments/assets/fc0301b3-7983-438e-b82e-024578c5a16a)
 
 <div align="center">
   <a href="https://discord.gg/ymcMaSnq7d" rel="nofollow">
