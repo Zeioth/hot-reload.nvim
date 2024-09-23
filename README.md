@@ -18,19 +18,16 @@ Reload your neovim config on the fly! It works with any lua file.
 - [FAQ](#faq)
 
 ## Why
-If you use Neovim in multiple machines, you can use the command `:DistroUpdate`
-to get the latest changes of your config from your GitHub repository from any
-device.
-
-If you are developing a Neovim distro, you can ship this plugin, and users will
-get updates from your distro GitHub repository when they run `:DistroUpdate`.
+* The main case of use, is to re-apply your Neovim config without having to reload Neovim.
+* But you can use it to load any lua file.
 
 ### Warning
-Running `:DistroUpdate` will overwrite any uncommited change in your
-local nvim config.
+Make sure the files you specify on `reload_files` are actually suitable to be hot-reloaded.
+
+* **Example**: If you hot-reload a file that create autocmds, be aware hot-reloading the file won't delete any previously loaded autocmd. Same thing for highlights, variables, etc.
 
 ## How to install
-This plugin requires you to use lazy package manager
+In the example we use the lazy package manager
 
 ```lua
 {
@@ -81,9 +78,6 @@ All options described here are 100% optional and you don't need to define them t
 
 ## Credits
 This GPL3 Neovim plugin has been developed for NormalNvim. It's based on the GPL3 hot reload snippet from AstroNvim v3. So please support both projects if you enjoy this plugin.
-
-## FAQ
-* **Is this plugin automatic?** Wip.
  
 ## Roadmap
 * It would be a cool idea to allow specifying a callback per file to hot-reload. But it's unclear how many people would actually use this.
