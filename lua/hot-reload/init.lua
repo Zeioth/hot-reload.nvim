@@ -12,7 +12,7 @@ function M.setup(opts)
       local config = vim.g.hot_reload_config
       local buf_path = vim.fn.expand("%:p")
 
-      -- For each file in config.reload_files.
+      -- For each file in `config.reload_files`.
       for _, file_path in ipairs(config.reload_files) do
         if file_path == buf_path then
           if config.reload_all then
