@@ -68,7 +68,7 @@ All options described here are 100% optional and you don't need to define them t
       },
       -- Things to do after hot-reload trigger.
       reload_callback = function()
-        vim.cmd ":silent! doautocmd ColorScheme"                      -- heirline colorscheme reload event.
+        vim.cmd(":silent! doautocmd ColorScheme")                     -- heirline colorscheme reload event.
         vim.cmd(":silent! colorscheme " .. vim.g.default_colorscheme) -- nvim     colorscheme reload command.
       end
     }
