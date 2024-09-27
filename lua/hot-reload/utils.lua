@@ -19,9 +19,11 @@ local M = {}
 -- HELPERS
 -------------------------------------------------------------------------------
 
---- Helper to temporarily make the buffer modifiable and restore its original state.
+--- Helper to temporarily make the buffer modifiable.
 --- The code inside the function passed in the callback, will always have
 --- `vim.opt.modifiable = true`.
+---
+--- Note: The purpose of this function is to avoid code repetition.
 --- @param callback function Function to execute with modifiable state.
 local function with_modifiable_buffer(callback)
   local is_modifiable = vim.opt.modifiable:get()
