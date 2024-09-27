@@ -6,9 +6,9 @@
 --    Helpers
 --      -> with_modifiable_buffer → Run a block of code with modifiable true.
 --      -> notify                 → Send a notification with the plugin title.
+--      -> notify_reload          → Notify the list of reloaded modules.
 
 --    Functions:
---      -> notify_reload          → Notify the list of reloaded modules.
 --      -> filepath_to_module     → Converts a file path to module name.
 --      -> reload                 → Hot reloads only the current specified file.
 --      -> reload_all             → Hot reloads all specified files (by order).
@@ -26,7 +26,7 @@ local function with_modifiable_buffer(callback)
   if not is_modifiable then vim.opt.modifiable = false end
 end
 
---- Serve a notification with a default title.
+--- Helper to serve a notification with a default title.
 --- @param msg string The notification body.
 --- @param type number|nil The type of the notification (:help vim.log.levels).
 --- @param opts? table The nvim-notify options to use (:help notify-options).
