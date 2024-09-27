@@ -15,6 +15,9 @@
 
 local M = {}
 
+-- HELPERS
+-------------------------------------------------------------------------------
+
 --- Helper to temporarily make the buffer modifiable and restore its original state.
 --- The code inside the function passed in the callback, will always have
 --- `vim.opt.modifiable = true`.
@@ -55,6 +58,10 @@ local function notify_reload(success, file_list, message)
   local log_level = success and vim.log.levels.INFO or vim.log.levels.ERROR
   notify(message .. "\n" .. formatted_list, log_level)
 end
+
+
+-- FUNCTIONS
+-------------------------------------------------------------------------------
 
 --- Given a path, return its nvim module.
 --- @param path string Path of a file inside your nvim config directory.
