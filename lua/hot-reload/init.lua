@@ -7,7 +7,7 @@ function M.setup(opts)
 
   -- The entry point of this plugin, is this autocmd.
   vim.api.nvim_create_autocmd({ vim.g.hot_reload_config.event  }, {
-    desc = "Hot Reload  - Reload a lua module is it's on `hot_reload_files` and the file is written",
+    desc = "Hot Reload  - Reload a lua module if it's on `hot_reload_files` and the file is written",
     callback = function()
       local config = vim.g.hot_reload_config
       local buf_path = vim.fn.expand("%:p")
